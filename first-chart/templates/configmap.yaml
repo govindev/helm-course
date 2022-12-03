@@ -4,4 +4,8 @@ metadata:
 	name: first-chart-configmap-{{.Chart.Version}}
 data:
 	port: "8080"
-	allowTesting: "true"
+	{{if eq .Value.env "staging"}}
+		allowTesting: "true"
+	{{else}}
+		allowTesting: "false"
+	{{end}}
